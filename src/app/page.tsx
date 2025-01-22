@@ -1,9 +1,15 @@
-import ProductListing from "./components/productListing";
+"use client"
+import {ProductListing} from "./components/productListing";
+import {Navbar} from "./components/navbar";
+import { useState } from "react";
 export default function Home() {
- 
+  const [selectedTag, setSelectedTag] = useState<string>("All");
 
   return (
-    <ProductListing />
+    <main className="px-[10%] py-4">
+      <Navbar setTag={setSelectedTag}/>
+      <ProductListing tag={selectedTag}/>
+    </main>
   );
 }
 
