@@ -1,12 +1,12 @@
 export default class Product {
-    name: String;
-    price: String;
-    img: String | null;
-    rating: Number;
-    votes: Number;
-    category: String;
+    name: string;
+    price: string;
+    img: string;
+    rating: number;
+    votes: number;
+    category: string;
 
-    constructor(name: String, price: String, img: String|null, rating: Number, votes: Number, category: String) {
+    constructor(name: string, price: string, img: string, rating: number, votes: number, category: string) {
         this.name = name;
         this.price = price;
         this.img = img;

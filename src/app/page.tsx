@@ -9,4 +9,4 @@ export default function Home() {
 }
 
 
-// Next: Color tags for categories, free images for products
+// Next: Color tags for categories
