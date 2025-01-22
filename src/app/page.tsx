@@ -7,3 +7,6 @@ export default function Home() {
     <ProductListing />
   );
 }
+
+
+// Next: Color tags for categories, free images for products
