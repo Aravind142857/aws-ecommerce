@@ -13,9 +13,9 @@ const allItems = [
     new Product("Dear Eddie", "$20.00", "https://picsum.photos/seed/phil/400/300", 4.9, 1004, "Books"),
     new Product("Das Capital - Karl Marx", "$26.00", "https://picsum.photos/seed/diaz/400/300", 4.5, 1914, "Books"),
 ];
-const [items, setItems] = useState<Product[]>(allItems);
+
 export const ProductListing: React.FC<ProductListingProps> = ({tag}) => {
-    
+    const [items, setItems] = useState<Product[]>(allItems);
     function handleTag(tag: string) {
         switch (tag) {
             case "All":
@@ -28,7 +28,7 @@ export const ProductListing: React.FC<ProductListingProps> = ({tag}) => {
     useEffect(()=> {
         handleTag(tag);
         return () => {setItems(allItems)};
-    },[tag, handleTag, allItems]);
+    },[tag, handleTag]);
 
     
 
