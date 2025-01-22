@@ -5,16 +5,17 @@ import { useEffect, useState } from "react"
 interface ProductListingProps {
     tag: string
 }
+const allItems = [
+    new Product("iPad", "$700.00", "https://picsum.photos/seed/picsum/400/300", 4.5, 1000, "Technology"),
+    new Product("dress", "$89.49", "https://picsum.photos/seed/brady/400/300", 4.9, 3000, "Clothing"),
+    new Product("t-shirt", "$19.99", "https://picsum.photos/seed/kendrick/400/300", 3.8, 385, "Clothing"),
+    new Product("Pepsi", "$1.99", "https://picsum.photos/seed/mbappe/400/300", 4.2, 11536, "Food and Beverages"),
+    new Product("Dear Eddie", "$20.00", "https://picsum.photos/seed/phil/400/300", 4.9, 1004, "Books"),
+    new Product("Das Capital - Karl Marx", "$26.00", "https://picsum.photos/seed/diaz/400/300", 4.5, 1914, "Books"),
+];
+const [items, setItems] = useState<Product[]>(allItems);
 export const ProductListing: React.FC<ProductListingProps> = ({tag}) => {
-    const allItems = [
-        new Product("iPad", "$700.00", "https://picsum.photos/seed/picsum/400/300", 4.5, 1000, "Technology"),
-        new Product("dress", "$89.49", "https://picsum.photos/seed/brady/400/300", 4.9, 3000, "Clothing"),
-        new Product("t-shirt", "$19.99", "https://picsum.photos/seed/kendrick/400/300", 3.8, 385, "Clothing"),
-        new Product("Pepsi", "$1.99", "https://picsum.photos/seed/mbappe/400/300", 4.2, 11536, "Food and Beverages"),
-        new Product("Dear Eddie", "$20.00", "https://picsum.photos/seed/phil/400/300", 4.9, 1004, "Books"),
-        new Product("Das Capital - Karl Marx", "$26.00", "https://picsum.photos/seed/diaz/400/300", 4.5, 1914, "Books"),
-    ];
-    const [items, setItems] = useState<Product[]>(allItems);
+    
     function handleTag(tag: string) {
         switch (tag) {
             case "All":
@@ -27,7 +28,7 @@ export const ProductListing: React.FC<ProductListingProps> = ({tag}) => {
     useEffect(()=> {
         handleTag(tag);
         return () => {setItems(allItems)};
-    },[tag]);
+    },[tag, handleTag, allItems]);
 
     
 
