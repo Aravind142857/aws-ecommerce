@@ -1,4 +1,8 @@
 import { Dispatch, SetStateAction } from "react"
+import { SearchBar } from "./searchbar";
+import { Profile } from "./profile";
+import { Logo } from "./logo";
+
 interface navbarProps {
     setTag: Dispatch<SetStateAction<string>>
 }
@@ -6,7 +10,11 @@ export const Navbar: React.FC<navbarProps> = ({setTag}) => {
     const links = ["All", "Technology", "Clothing", "Food and Beverages", "Books", "Drugs and Pharmaceuticals"];
     return (
         <div className="w-full p-2 border-2 border-white ">
-            <div id="searchbar" className="w-full h-8 bg-white mb-2"></div>
+            <div id="row1" className="w-full flex justify-between mb-2">
+                <Logo />
+                <SearchBar />
+                <Profile />
+            </div>
             <div id="nav-items" className="flex justify-between">
                 {links.map((url) => (
                     <button key={url} 
@@ -17,3 +25,5 @@ export const Navbar: React.FC<navbarProps> = ({setTag}) => {
         </div>
     );
 };
+
+// indigo-400, orange-400, sky-400, violet-400/purple-400, bg-lime-400/75, bg-white

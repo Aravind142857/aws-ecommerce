@@ -14,7 +14,7 @@ export default function Home() {
 }
 
 
-// Next: Color tags for categories
+// Next: Color tags for categories, Search Bar
 /**
  * Acknowledgements:
  * Free images from Lorem Picsum (https://picsum.photos)
