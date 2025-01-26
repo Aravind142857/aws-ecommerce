@@ -16,19 +16,24 @@ const allItems = [
 
 export const ProductListing: React.FC<ProductListingProps> = ({tag}) => {
     const [items, setItems] = useState<Product[]>(allItems);
-    function handleTag(tag: string) {
-        switch (tag) {
-            case "All":
-                setItems(allItems);
-                return;
-            default:
-                setItems(allItems.filter((p)=> p.category === tag));   
-        }
-    }
+    // function handleTag(tag: string) {
+    //     switch (tag) {
+    //         case "All":
+    //             setItems(allItems);
+    //             return;
+    //         default:
+    //             setItems(allItems.filter((p)=> p.category === tag));   
+    //     }
+    // }
+
     useEffect(()=> {
-        handleTag(tag);
+        if (tag == "All") {
+            setItems(allItems);
+        } else {
+            setItems(allItems.filter((p)=> p.category === tag));
+        }
         return () => {setItems(allItems)};
-    },[tag, handleTag]);
+    },[tag]);
 
     
 
@@ -37,8 +42,8 @@ export const ProductListing: React.FC<ProductListingProps> = ({tag}) => {
     {items.length == 0 && <p className="text-center mt-4 text-6xl w-full">No Items match the filter</p>}
     <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-flow-row ">
         {items.map((product, idx) => (
-          <div key={idx} className="border-4 border-white p-2 m-2">
-            <Image src={product.img.toString()} alt="Placeholder" width={400} height={300}/>
+          <div key={idx} className="border-4 border-white p-2 m-2 w-full">
+            <Image src={product.img.toString()} alt="Placeholder" width={400} height={300} className="m-auto "/>
             <h1 className="text-4xl text-center">{product.name}</h1>
             <span className="flex justify-between"><p className="font-bold">{product.price}</p><p>{product.rating.toString()} / 5</p><p>{product.votes.toString()}</p></span>
             <p className="text-center">{product.category}</p>
