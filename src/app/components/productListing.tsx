@@ -2,6 +2,7 @@
 import Product from "../types/Product"
 import Image from "next/image"
 import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 interface ProductListingProps {
     tag: string
 }
@@ -18,7 +19,7 @@ export const ProductListing: React.FC<ProductListingProps> = ({tag}) => {
     const [items, setItems] = useState<Product[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
-
+    const router = useRouter();
     const fetchProducts = async () => {
         try {
             setLoading(true);
@@ -75,7 +76,7 @@ export const ProductListing: React.FC<ProductListingProps> = ({tag}) => {
     {items.length == 0 && <p className="text-center mt-4 text-6xl w-full">No Items match the filter</p>}
     <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-flow-row ">
         {items.map((product, idx) => (
-          <div key={idx} className="border-4 border-white p-2 m-2 w-full">
+          <div key={idx} className="border-4 border-white p-2 m-2 w-full cursor-pointer" onClick={()=>router.push(`/products/${product.pid}`)}>
             <Image src={product.img.toString()} alt="Placeholder" width={400} height={300} className="m-auto "/>
             <h1 className="text-4xl text-center">{product.name}</h1>
             <h2 className="text-md text-center w-full line-clamp-1">{product.desc}</h2>

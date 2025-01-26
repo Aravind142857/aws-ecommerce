@@ -9,8 +9,8 @@ export default class Product {
     votes: number;
     category: string;
 
-    constructor(name: string, desc:string, price: string, img: string, rating: number, votes: number, category: string) {
-        this.pid = uuidv4();
+    constructor(pid: string, name: string, desc:string, price: string, img: string, rating: number, votes: number, category: string) {
+        this.pid = pid;//uuidv4();
         this.name = name;
         this.desc = desc;
         this.price = price;
@@ -36,6 +36,7 @@ export default class Product {
     static fromJSON(products: string): Product[] {
         const parsedProducts: any[] = JSON.parse(products);
         return parsedProducts.map((product) => new Product(
+            product.pid,
             product.name,
             product.desc,
             product.price,

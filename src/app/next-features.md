@@ -18,15 +18,15 @@
     2. Filtering products by category
 4. Classes
     1. Product - Represents a product. Contains toJSON and fromJSON methods
+5. A Product page for each product using product id
 ### Next:
-1. A Product page for each product using product id
-2. Functioning search bar
-3. Pagination and more products
-4. Integration with database
-5. Profile page
-6. Shopping cart and adding to cart
-7. Checkout
-8. More filters
-9. Sorting
-10. Personal Recommendations
-11. Allow mini-view of entire product page on listing page
+1. Functioning search bar
+2. Pagination and more products
+3. Integration with database
+4. Profile page
+5. Shopping cart and adding to cart
+6. Checkout
+7. More filters
+8. Sorting
+9. Personal Recommendations
+10. Allow mini-view of entire product page on listing page
