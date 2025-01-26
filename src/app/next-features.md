@@ -8,7 +8,19 @@
     5. Price
     6. Category
 2. Navbar
-    1.Logo
+    1. Logo
     2. Non-functional Profile
     3. Some Filters
     4. Non-functional search bar
+### Next:
+1. Description for each product on the listings page
+2. A Product page for each product
+3. Functioning search bar
+4. Pagination and more products
+5. Integration with database
+6. Profile page
+6. Shopping cart and adding to cart
+7. Checkout
+8. More filters
+9. Sorting
+10. Personal Recommendations
