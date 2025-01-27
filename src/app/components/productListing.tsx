@@ -4,7 +4,8 @@ import Image from "next/image"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 interface ProductListingProps {
-    tag: string
+    tag: string;
+    searchTerm: string;
 }
 // const allItems = [
 //     new Product("iPad", "(10th Generation): with A14 Bionic chip, 10.9-inch Liquid Retina Display, 64GB, Wi-Fi 6, 12MP front/12MP Back Camera, Touch ID, All-Day Battery Life – Blue", "$700.00", "https://picsum.photos/seed/picsum/400/300", 4.5, 1000, "Technology"),
@@ -15,10 +16,11 @@ interface ProductListingProps {
 //     new Product("Das Capital - Karl Marx", "Capital (Das Capital): Includes Vol.1,2,3", "$26.00", "https://picsum.photos/seed/diaz/400/300", 4.5, 1914, "Books"),
 // ];
 
-export const ProductListing: React.FC<ProductListingProps> = ({tag}) => {
+export const ProductListing: React.FC<ProductListingProps> = ({tag, searchTerm}) => {
     const [items, setItems] = useState<Product[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
+
     const router = useRouter();
     const fetchProducts = async () => {
         try {
@@ -53,23 +55,42 @@ export const ProductListing: React.FC<ProductListingProps> = ({tag}) => {
             setLoading(false);
         }
     };
+    const fetchProductsByQuery = async () => {
+        try {
+            setLoading(true);
+            console.log("Displaying products matching search query:", searchTerm);
+            const response = await fetch(`/api/searchProducts?query=${searchTerm}`);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            console.log(data, Product.fromJSON(data.data));
+            setItems(Product.fromJSON(data.data));
+        } catch (err: any) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
     useEffect(() => {
         fetchProducts();
     }, []);
 
     useEffect(()=> {
         console.log(tag, items);
-        if (tag == "All") {
-            fetchProducts();
+        if (searchTerm == "") {
+            if (tag == "All") {
+                fetchProducts();
+            }
+            else {
+                // setItems(items.filter((p)=> p.category === tag));
+                fetchProductsByCategory();
+            }
+        } else {
+            console.log(searchTerm);
+            fetchProductsByQuery();
         }
-        else {
-            // setItems(items.filter((p)=> p.category === tag));
-            fetchProductsByCategory();
-        }
-        // }
-    },[tag]);
-
-    
+    },[tag, searchTerm]);
 
     return (
     <>

@@ -4,15 +4,16 @@ import { Profile } from "./profile";
 import { Logo } from "./logo";
 
 interface navbarProps {
-    setTag: Dispatch<SetStateAction<string>>
+    setTag: Dispatch<SetStateAction<string>>;
+    setSearchTerm: Dispatch<SetStateAction<string>>;
 }
-export const Navbar: React.FC<navbarProps> = ({setTag}) => {
+export const Navbar: React.FC<navbarProps> = ({setTag, setSearchTerm}) => {
     const links = ["All", "Technology", "Clothing", "Food and Beverages", "Books", "Drugs and Pharmaceuticals"];
     return (
         <div className="w-full p-2 border-2 border-white ">
             <div id="row1" className="w-full flex justify-between mb-2">
                 <Logo />
-                <SearchBar />
+                <SearchBar setSearchTerm={setSearchTerm}/>
                 <Profile />
             </div>
             <div id="nav-items" className="flex justify-between">

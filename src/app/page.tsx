@@ -4,11 +4,11 @@ import {Navbar} from "./components/navbar";
 import { useState } from "react";
 export default function Home() {
   const [selectedTag, setSelectedTag] = useState<string>("All");
-
+  const [searchTerm, setSearchTerm] = useState<string>("");
   return (
     <main className="px-[10%] py-4">
-      <Navbar setTag={setSelectedTag}/>
-      <ProductListing tag={selectedTag}/>
+      <Navbar setTag={setSelectedTag} setSearchTerm={setSearchTerm}/>
+      <ProductListing tag={selectedTag} searchTerm={searchTerm}/>
     </main>
   );
 }

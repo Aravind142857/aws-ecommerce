@@ -30,3 +30,4 @@
 8. Sorting
 9. Personal Recommendations
 10. Allow mini-view of entire product page on listing page
+11. Themes
