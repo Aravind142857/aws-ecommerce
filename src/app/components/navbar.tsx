@@ -2,13 +2,15 @@ import { Dispatch, SetStateAction, useState } from "react"
 import { SearchBar } from "./searchbar";
 import { Profile } from "./profile";
 import { Logo } from "./logo";
+import { IoMdAdd } from "react-icons/io";
 
 interface navbarProps {
     setTag: Dispatch<SetStateAction<string>>;
     setSearchTerm: Dispatch<SetStateAction<string>>;
     setFilter: Dispatch<SetStateAction<string>>;
+    setCreateMode: Dispatch<SetStateAction<boolean>>;
 }
-export const Navbar: React.FC<navbarProps> = ({setTag, setSearchTerm, setFilter}) => {
+export const Navbar: React.FC<navbarProps> = ({setTag, setSearchTerm, setFilter, setCreateMode}) => {
     const links = ["All", "Technology", "Clothing", "Food and Beverages", "Books", "Drugs and Pharmaceuticals"];
     const [reset, setReset] = useState<boolean>(false);
     return (
@@ -16,7 +18,15 @@ export const Navbar: React.FC<navbarProps> = ({setTag, setSearchTerm, setFilter}
             <div id="row1" className="w-full flex justify-between mb-2">
                 <Logo />
                 <SearchBar setSearchTerm={setSearchTerm} setFilter={setFilter} reset={reset} setReset={setReset}/>
-                <Profile />
+                <div className="flex">
+                    <button className="p-1 rounded-md hover:bg-white hover:text-black cursor-pointer" onClick={()=>{
+                        console.log("Create MODE");
+                        setCreateMode(true);
+                        }}>
+                        <IoMdAdd className="text-2xl w-8 h-8" />
+                    </button>
+                    <Profile />
+                </div>
             </div>
             <div id="nav-items" className="flex justify-between">
                 {links.map((url) => (
