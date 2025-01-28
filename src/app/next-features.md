@@ -12,22 +12,22 @@
     1. Logo
     2. Non-functional Profile
     3. Some Filters
-    4. Non-functional search bar
+    4. Functional search bar
 3. APIs
     1. All products
     2. Filtering products by category
 4. Classes
     1. Product - Represents a product. Contains toJSON and fromJSON methods
 5. A Product page for each product using product id
+
 ### Next:
-1. Functioning search bar
-2. Pagination and more products
-3. Integration with database
-4. Profile page
-5. Shopping cart and adding to cart
-6. Checkout
-7. More filters
-8. Sorting
-9. Personal Recommendations
-10. Allow mini-view of entire product page on listing page
-11. Themes
+1. Pagination and more products
+2. Integration with database
+3. Profile page
+4. Shopping cart and adding to cart
+5. Checkout
+6. More filters
+7. Sorting
+8. Personal Recommendations
+9. Allow mini-view of entire product page on listing page
+10. Themes

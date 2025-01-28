@@ -1,16 +1,27 @@
-import { ChangeEvent, useState, SetStateAction, Dispatch } from "react"
+import { ChangeEvent, useState, SetStateAction, Dispatch, useEffect } from "react"
 interface searchbarProps {
     setSearchTerm: Dispatch<SetStateAction<string>>;
+    setFilter: Dispatch<SetStateAction<string>>;
+    reset: boolean;
+    setReset: Dispatch<SetStateAction<boolean>>;
 }
-export const SearchBar: React.FC<searchbarProps> = ({setSearchTerm}) => {
+export const SearchBar: React.FC<searchbarProps> = ({setSearchTerm, setFilter, reset, setReset}) => {
     const [query, setQuery] = useState<string>("");
+    useEffect(()=>{
+        if (reset) {
+            setQuery("");
+            setReset(false);
+        }
+    }, [reset]);
+
     const handleSubmit = (event: {key: any}) => {
         if (event.key === "Enter") {
             console.log("Enter key pressed");
-            if (query) {
-                console.log(query);
-                setSearchTerm(query);
-            }
+            // if (query) {
+            console.log(query);
+            setFilter("search");
+            setSearchTerm(query);
+        // }
         }
     }
     return (

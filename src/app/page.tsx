@@ -5,10 +5,11 @@ import { useState } from "react";
 export default function Home() {
   const [selectedTag, setSelectedTag] = useState<string>("All");
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [filterType, setFilterType] = useState<string>("");
   return (
     <main className="px-[10%] py-4">
-      <Navbar setTag={setSelectedTag} setSearchTerm={setSearchTerm}/>
-      <ProductListing tag={selectedTag} searchTerm={searchTerm}/>
+      <Navbar setTag={setSelectedTag} setSearchTerm={setSearchTerm} setFilter={setFilterType}/>
+      <ProductListing tag={selectedTag} searchTerm={searchTerm} filter={filterType}/>
     </main>
   );
 }

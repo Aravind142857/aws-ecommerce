@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation"
 interface ProductListingProps {
     tag: string;
     searchTerm: string;
+    filter: string;
 }
 // const allItems = [
 //     new Product("iPad", "(10th Generation): with A14 Bionic chip, 10.9-inch Liquid Retina Display, 64GB, Wi-Fi 6, 12MP front/12MP Back Camera, Touch ID, All-Day Battery Life – Blue", "$700.00", "https://picsum.photos/seed/picsum/400/300", 4.5, 1000, "Technology"),
@@ -16,7 +17,7 @@ interface ProductListingProps {
 //     new Product("Das Capital - Karl Marx", "Capital (Das Capital): Includes Vol.1,2,3", "$26.00", "https://picsum.photos/seed/diaz/400/300", 4.5, 1914, "Books"),
 // ];
 
-export const ProductListing: React.FC<ProductListingProps> = ({tag, searchTerm}) => {
+export const ProductListing: React.FC<ProductListingProps> = ({tag, searchTerm, filter}) => {
     const [items, setItems] = useState<Product[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
@@ -49,6 +50,7 @@ export const ProductListing: React.FC<ProductListingProps> = ({tag, searchTerm})
             const data = await response.json();
             console.log(data, Product.fromJSON(data.data));
             setItems(Product.fromJSON(data.data));
+            console.log("Category new items", items);
         } catch (err: any) {
             setError(err.message);
         } finally {
@@ -60,12 +62,16 @@ export const ProductListing: React.FC<ProductListingProps> = ({tag, searchTerm})
             setLoading(true);
             console.log("Displaying products matching search query:", searchTerm);
             const response = await fetch(`/api/searchProducts?query=${searchTerm}`);
+            // console.log(response);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
             const data = await response.json();
-            console.log(data, Product.fromJSON(data.data));
+            console.log(data.data);
+            console.log("Previous items",items);
             setItems(Product.fromJSON(data.data));
+            console.log("New items", items);
+            console.log(items);
         } catch (err: any) {
             setError(err.message);
         } finally {
@@ -73,24 +79,30 @@ export const ProductListing: React.FC<ProductListingProps> = ({tag, searchTerm})
         }
     };
     useEffect(() => {
+        console.log('Fetching all products...')
         fetchProducts();
     }, []);
 
     useEffect(()=> {
         console.log(tag, items);
-        if (searchTerm == "") {
+        if (filter == "tag") {
             if (tag == "All") {
                 fetchProducts();
             }
             else {
-                // setItems(items.filter((p)=> p.category === tag));
                 fetchProductsByCategory();
             }
-        } else {
-            console.log(searchTerm);
-            fetchProductsByQuery();
         }
-    },[tag, searchTerm]);
+    },[tag]);
+    useEffect(()=> {
+        if (filter == "search") {
+            if (searchTerm ==  "") {
+                fetchProducts();
+            } else {
+                fetchProductsByQuery();
+            }
+        }
+    },[searchTerm])
 
     return (
     <>
@@ -109,3 +121,5 @@ export const ProductListing: React.FC<ProductListingProps> = ({tag, searchTerm})
       </>
     )
 }
+
+// Set searchTerm to "" once a tag is clicked
