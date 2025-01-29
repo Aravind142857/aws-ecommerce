@@ -23,16 +23,17 @@
 4. Classes
     1. Product - Represents a product. Contains toJSON and fromJSON methods
 5. A Product page for each product using product id
+6. Database: DynamoDB
 
 ### Next:
 1. Pagination and more products (n=20 products a page, general query returns items-a-page and num-pages)
-2. Integration with database
-3. Profile page
-4. Shopping cart and adding to cart
-5. Checkout
-6. More filters
-7. Sorting
-8. Personal Recommendations
-9. Allow mini-view of entire product page on listing page
-10. Themes
-11. BUG FIX: Tag and search
+2. Profile page
+3. Shopping cart and adding to cart
+4. Checkout
+5. More filters
+6. Sorting
+7. Personal Recommendations
+8. Allow mini-view of entire product page on listing page
+9. Themes
+10. BUG FIX: Tag and search
+11. BUG FIX: Add lowercase name, desc to Product to enable case-insensitive search. Change searchTerm to lowercase
