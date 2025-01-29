@@ -1,5 +1,4 @@
 import Product from "@/app/types/Product";
-// import { addProduct } from "../products";
 import {v4 as uuidv4} from 'uuid';
 import { db } from "../../database/dynamoDB";
 
@@ -23,7 +22,6 @@ export async function POST (request: Request) {
         return Response.json({error: "No request body found"}, { status: 400 });
     }
     const p: Product = new Product(
-        // formData.get('pid') as string,
         uuidv4(),
         formData.get('name') as string,
         formData.get('desc') as string,
@@ -33,9 +31,6 @@ export async function POST (request: Request) {
         Number(formData.get('votes')),
         formData.get('category') as string
     );
-    console.log(p);
-    // Add Product p to allItems
-    // addProduct(p);
     await db.put({TableName: "Products", Item: p})
     return Response.json({ data: p.pid }, { status: 201 });
 }

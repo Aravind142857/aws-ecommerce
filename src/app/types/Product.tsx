@@ -63,3 +63,4 @@ export default class Product {
       }
       
 }
+// Add LowerCase()

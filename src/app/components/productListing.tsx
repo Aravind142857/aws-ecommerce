@@ -30,12 +30,11 @@ export const ProductListing: React.FC<ProductListingProps> = ({tag, searchTerm, 
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            console.log(response);
             const data = await response.json();
             if (!data) {
                 return;
             }
-            setItems(p=>data.data);
+            setItems(data.data);
 
         } catch (err: any) {
             setError(err.message);
@@ -61,18 +60,12 @@ export const ProductListing: React.FC<ProductListingProps> = ({tag, searchTerm, 
     const fetchProductsByQuery = async () => {
         try {
             setLoading(true);
-            console.log("Displaying products matching search query:", searchTerm);
             const response = await fetch(`/api/searchProducts?query=${searchTerm}`);
-            // console.log(response);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
             const data = await response.json();
-            console.log(data.data);
-            console.log("Previous items",items);
-            setItems(Product.fromJSON(data.data));
-            console.log("New items", items);
-            console.log(items);
+            setItems(data.data);
         } catch (err: any) {
             setError(err.message);
         } finally {
