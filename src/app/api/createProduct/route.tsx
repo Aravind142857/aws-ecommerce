@@ -1,6 +1,7 @@
 import Product from "@/app/types/Product";
-import { addProduct } from "../products";
+// import { addProduct } from "../products";
 import {v4 as uuidv4} from 'uuid';
+import { db } from "../../database/dynamoDB";
 
 /**
  * Process Post req to create Products of type 
@@ -34,8 +35,8 @@ export async function POST (request: Request) {
     );
     console.log(p);
     // Add Product p to allItems
-    addProduct(p);
-
+    // addProduct(p);
+    await db.put({TableName: "Products", Item: p})
     return Response.json({ data: p.pid }, { status: 201 });
 }
 

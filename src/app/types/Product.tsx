@@ -46,4 +46,20 @@ export default class Product {
             product.category
         ));
     }
+    static fromDynamoItem(item: Record<string, any>): Product {
+        return {
+          pid: item.pid.S,
+          name: item.name.S,
+          desc: item.desc.S,
+          price: item.price.S,
+          img: item.img.S,
+          rating: Number(item.rating.N),
+          votes: Number(item.votes.N),
+          category: item.category.S
+        };
+      }
+      static fromDynamoItems(items: Record<string, any>[]): Product[] {
+        return items.map((item) => Product.fromDynamoItem(item));
+      }
+      
 }

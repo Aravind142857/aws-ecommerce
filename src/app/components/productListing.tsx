@@ -30,9 +30,12 @@ export const ProductListing: React.FC<ProductListingProps> = ({tag, searchTerm, 
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
+            console.log(response);
             const data = await response.json();
-            console.log(data, Product.fromJSON(data.data));
-            setItems(p=>Product.fromJSON(data.data));
+            if (!data) {
+                return;
+            }
+            setItems(p=>data.data);
 
         } catch (err: any) {
             setError(err.message);
@@ -48,9 +51,7 @@ export const ProductListing: React.FC<ProductListingProps> = ({tag, searchTerm, 
                 throw new Error('Network response was not ok');
             }
             const data = await response.json();
-            console.log(data, Product.fromJSON(data.data));
-            setItems(Product.fromJSON(data.data));
-            console.log("Category new items", items);
+            setItems(data.data);
         } catch (err: any) {
             setError(err.message);
         } finally {
