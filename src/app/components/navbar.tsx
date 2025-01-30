@@ -4,6 +4,7 @@ import { Profile } from "./profile";
 import { Logo } from "./logo";
 import { IoMdAdd } from "react-icons/io";
 import { IoCart } from "react-icons/io5";
+import LoginButton from "./LoginButton";
 
 interface navbarProps {
     setTag: Dispatch<SetStateAction<string>>;
@@ -29,6 +30,7 @@ export const Navbar: React.FC<navbarProps> = ({setTag, setSearchTerm, setFilter,
                     <a href="./cart" className="p-1 rounded-md hover:bg-white hover:text-black cursor-pointer">
                         <IoCart className="text-2xl w-8 h-8" />
                     </a>
+                    <LoginButton />
                     <Profile />
                 </div>
             </div>
