@@ -27,9 +27,9 @@
 
 ### Next:
 1. Pagination and more products (n=20 products a page, general query returns items-a-page and num-pages)
-2. Profile page
+2. Profile page (User authentication with Cognito)
 3. Shopping cart and adding to cart
-4. Checkout
+4. Checkout (using Stripe)
 5. More filters
 6. Sorting
 7. Personal Recommendations

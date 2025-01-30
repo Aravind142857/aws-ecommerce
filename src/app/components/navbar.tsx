@@ -3,6 +3,7 @@ import { SearchBar } from "./searchbar";
 import { Profile } from "./profile";
 import { Logo } from "./logo";
 import { IoMdAdd } from "react-icons/io";
+import { IoCart } from "react-icons/io5";
 
 interface navbarProps {
     setTag: Dispatch<SetStateAction<string>>;
@@ -25,6 +26,9 @@ export const Navbar: React.FC<navbarProps> = ({setTag, setSearchTerm, setFilter,
                         }}>
                         <IoMdAdd className="text-2xl w-8 h-8" />
                     </button>
+                    <a href="./cart" className="p-1 rounded-md hover:bg-white hover:text-black cursor-pointer">
+                        <IoCart className="text-2xl w-8 h-8" />
+                    </a>
                     <Profile />
                 </div>
             </div>
