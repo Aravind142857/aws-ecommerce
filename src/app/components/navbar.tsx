@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useState } from "react"
 import { SearchBar } from "./searchbar";
-import { Profile } from "./profile";
+import Profile from "./profile";
 import { Logo } from "./logo";
 import { IoMdAdd } from "react-icons/io";
 import { IoCart } from "react-icons/io5";
@@ -15,23 +15,24 @@ interface navbarProps {
 export const Navbar: React.FC<navbarProps> = ({setTag, setSearchTerm, setFilter, setCreateMode}) => {
     const links = ["All", "Technology", "Clothing", "Food and Beverages", "Books", "Drugs and Pharmaceuticals"];
     const [reset, setReset] = useState<boolean>(false);
+    const [username, setUsername] = useState<string>('');
     return (
         <div className="w-full p-2 border-2 border-white ">
             <div id="row1" className="w-full flex justify-between mb-2">
                 <Logo />
                 <SearchBar setSearchTerm={setSearchTerm} setFilter={setFilter} reset={reset} setReset={setReset}/>
-                <div className="flex">
+                <div className="flex justify-end">
                     <button className="p-1 rounded-md hover:bg-white hover:text-black cursor-pointer" onClick={()=>{
                         console.log("Create MODE");
                         setCreateMode(true);
                         }}>
                         <IoMdAdd className="text-2xl w-8 h-8" />
                     </button>
-                    <a href="./cart" className="p-1 rounded-md hover:bg-white hover:text-black cursor-pointer">
+                    <a href="./cart" className="p-1 rounded-md hover:bg-white hover:text-black cursor-pointer self-center">
                         <IoCart className="text-2xl w-8 h-8" />
                     </a>
-                    <LoginButton />
-                    <Profile />
+                    <LoginButton setUsername={setUsername}/>
+                    <Profile username={username}/>
                 </div>
             </div>
             <div id="nav-items" className="flex justify-between">

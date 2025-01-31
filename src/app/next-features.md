@@ -24,10 +24,11 @@
     1. Product - Represents a product. Contains toJSON and fromJSON methods
 5. A Product page for each product using product id
 6. Database: DynamoDB
+7. User Authentication: AWS Cognito
 
-### Next:
+## Next:
 1. Pagination and more products (n=20 products a page, general query returns items-a-page and num-pages)
-2. Profile page (User authentication with Cognito)
+2. Profile page
 3. Shopping cart and adding to cart
 4. Checkout (using Stripe)
 5. More filters
@@ -37,3 +38,11 @@
 9. Themes
 10. BUG FIX: Tag and search
 11. BUG FIX: Add lowercase name, desc to Product to enable case-insensitive search. Change searchTerm to lowercase
+12. API for login, signup
+
+## Tech stack:
+1. NextJS
+2. TypeScript
+3. AWS DynamoDB
+4. AWS Cognito
+5. Tailwind CSS

@@ -17,16 +17,13 @@ export const SearchBar: React.FC<searchbarProps> = ({setSearchTerm, setFilter, r
     const handleSubmit = (event: {key: any}) => {
         if (event.key === "Enter") {
             console.log("Enter key pressed");
-            // if (query) {
             console.log(query);
             setFilter("search");
             setSearchTerm(query);
-        // }
         }
     }
     return (
-        // <div id="searchbar" className="w-[50%] h-8 bg-white mb-2"></div>
-        <div className=" w-[50%]">
+        <div className=" w-[50%] self-center">
             <input type="text"
             placeholder="Search"
             value={query??""}
