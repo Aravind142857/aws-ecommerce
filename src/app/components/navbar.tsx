@@ -16,6 +16,7 @@ export const Navbar: React.FC<navbarProps> = ({setTag, setSearchTerm, setFilter,
     const links = ["All", "Technology", "Clothing", "Food and Beverages", "Books", "Drugs and Pharmaceuticals"];
     const [reset, setReset] = useState<boolean>(false);
     const [username, setUsername] = useState<string>('');
+    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
     return (
         <div className="w-full p-2 border-2 border-white ">
             <div id="row1" className="w-full flex justify-between mb-2">
@@ -31,8 +32,8 @@ export const Navbar: React.FC<navbarProps> = ({setTag, setSearchTerm, setFilter,
                     <a href="./cart" className="p-1 rounded-md hover:bg-white hover:text-black cursor-pointer self-center">
                         <IoCart className="text-2xl w-8 h-8" />
                     </a>
-                    <LoginButton setUsername={setUsername}/>
-                    <Profile username={username}/>
+                    <LoginButton setUsername={setUsername} setIsAuthenticated={setIsAuthenticated}/>
+                    <Profile username={username} isAuthenticated={isAuthenticated}/>
                 </div>
             </div>
             <div id="nav-items" className="flex justify-between">
