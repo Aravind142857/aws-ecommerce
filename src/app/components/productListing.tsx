@@ -78,7 +78,6 @@ export const ProductListing: React.FC<ProductListingProps> = ({tag, searchTerm, 
     }, []);
 
     useEffect(()=> {
-        console.log(tag, items);
         if (filter == "tag") {
             if (tag == "All") {
                 fetchProducts();

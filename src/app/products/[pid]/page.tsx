@@ -7,7 +7,6 @@ const ProductPage = () => {
     const params = useParams();
     const [product, setProduct] = useState<Product|null>(null);
     const pid = params.pid;
-    console.log(pid);
     useEffect(() => {
         const fetchProduct:{():Promise<void>} = async () => {
             const response = await fetch(`http://localhost:3000/api/productByID?pid=${pid}`);

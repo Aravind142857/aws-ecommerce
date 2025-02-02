@@ -6,15 +6,15 @@ export async function POST (request: Request) {
     if (!data) {
         return Response.json({error: "No request body found"}, { status: 400 });
     }
-    const {id, email, address, birthdate, given_name, family_name} = data;
-
+    const {id, email, address, birthdate, given_name, family_name, created_at} = data;
     const u: User = new User(
         id,
         email,
-        address,
+        address.formatted??address,
         birthdate,
         given_name,
-        family_name
+        family_name,
+        created_at
     );
     await db.put({TableName: "Users", Item: u})
     return Response.json({ data: u.user_id }, { status: 201 });

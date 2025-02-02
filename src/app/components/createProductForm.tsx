@@ -29,7 +29,6 @@ export const CreateProductForm:React.FC<CreateProductFormProps> = ({setCreateMod
                 throw new Error('Network response was not ok');
             }
             const data = await response.json();
-            console.log(data, data.data);
             setCreateMode(false);
             console.log("Created product with id:", data.data);
         } catch (error) {
@@ -71,5 +70,3 @@ export const CreateProductForm:React.FC<CreateProductFormProps> = ({setCreateMod
     )
 
 }
-
-// Not displaying on screen

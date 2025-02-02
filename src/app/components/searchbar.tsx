@@ -17,7 +17,6 @@ export const SearchBar: React.FC<searchbarProps> = ({setSearchTerm, setFilter, r
     const handleSubmit = (event: {key: any}) => {
         if (event.key === "Enter") {
             console.log("Enter key pressed");
-            console.log(query);
             setFilter("search");
             setSearchTerm(query);
         }
