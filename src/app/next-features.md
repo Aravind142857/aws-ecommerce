@@ -32,7 +32,7 @@
 
 ## Next:
 1. Pagination and more products (n=20 products a page, general query returns items-a-page and num-pages)
-2. Shopping cart and adding to cart
+2. Shopping cart and adding to cart (user_id)
 3. Checkout (using Stripe)
 4. More filters
 5. Sorting

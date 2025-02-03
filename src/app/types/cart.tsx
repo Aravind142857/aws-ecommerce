@@ -1,15 +1,15 @@
 import Product from "./Product";
 
 export class Cart {
-    cart_id: string;
+    user_id: string;
     items: CartItem[];
     total_quantity: number;
     total_price: number;
-    constructor(cart_id: string, items: CartItem[], total_quantity: number, total_price: number) {
-        this.cart_id = cart_id;
+    constructor(user_id: string, items: CartItem[]) {
+        this.user_id = user_id;
         this.items = items;
-        this.total_quantity = total_quantity;
-        this.total_price = total_price;
+        this.total_quantity = items?items.reduce((accumulator, curr) => accumulator + curr.quantity, 0):0;
+        this.total_price = items?items.reduce((accumulator, curr) => accumulator + curr.total_price, 0):0.0;
     }
     getCartItems(): CartItem[] {
         return this.items;
@@ -48,6 +48,11 @@ export class Cart {
             }
         }
     }
+    static fromDynamoItem(item: Record<string, any>): Cart {
+        const user_id: string = item.user_id.S;
+        const items: CartItem[] = CartItem.fromDynamoItems(item.items.L);
+        return new Cart(user_id, items);
+    }
 }
 export class CartItem {
     product: Product;
@@ -58,4 +63,18 @@ export class CartItem {
         this.quantity = quantity;
         this.total_price = Number(product.price) * Number(this.quantity);
     }
-}   
+    static fromDynamoItem(item: Record<string, any>): CartItem {
+        const product: Product = Product.fromDynamoItem(item.product.M);
+        const quantity: number = Number(item.quantity.N);
+        return new CartItem(product, quantity);
+    }
+    static fromDynamoItems(items: Record<string, any>[]): CartItem[] {
+        const cartItems: CartItem[] = [];
+        items.forEach((item) => {
+            cartItems.push(CartItem.fromDynamoItem(item.M));
+        });
+        return cartItems;
+    }
+}
+
+// Create table Cart, API addToCart, API removeFromCart, onCartIconClick: redirect to cart page, on cart page: +/- to change qty, delete to remove item, 'Add product' to add new item to cart.
