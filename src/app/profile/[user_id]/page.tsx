@@ -3,9 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import User from "@/app/types/User";
-// interface profileProps {
-//     user_id: string;
-// }
+
 const ProfilePage:React.FC = () => {
     const params = useParams();
     const router = useRouter();

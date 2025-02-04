@@ -1,4 +1,4 @@
-import Product from "./Product";
+import Product from "@/app/types/Product";
 
 export class Cart {
     user_id: string;
@@ -8,8 +8,8 @@ export class Cart {
     constructor(user_id: string, items: CartItem[]) {
         this.user_id = user_id;
         this.items = items;
-        this.total_quantity = items?items.reduce((accumulator, curr) => accumulator + curr.quantity, 0):0;
-        this.total_price = items?items.reduce((accumulator, curr) => accumulator + curr.total_price, 0):0.0;
+        this.total_quantity = (items)?items.reduce((accumulator, curr) => accumulator + curr.quantity, 0):0;
+        this.total_price = (items)?items.reduce((accumulator, curr) => accumulator + curr.total_price, 0):0.0;
     }
     getCartItems(): CartItem[] {
         return this.items;
@@ -24,14 +24,14 @@ export class Cart {
         const item: CartItem | undefined = this.items.find((item) => item.product.pid === product.pid);
         if (item) {
             item.quantity += Number(quantity);
-            item.total_price = Number(item.quantity) * Number(item.product.price);
+            item.total_price = Number(item.quantity) * Number(item.product.price.substring(1));
             this.total_quantity = Number(this.total_quantity) + Number(quantity);
-            this.total_price = Number(this.total_price) + Number(item.product.price) * Number(quantity);
+            this.total_price = Number(this.total_price) + Number(item.product.price.substring(1)) * Number(quantity);
             return;
         }
-        this.items.push(new CartItem(product, quantity));
-        this.total_quantity = Number(this.total_quantity) + Number(quantity);
-        this.total_price = Number(this.total_price) + Number(product.price) * Number(quantity);
+        this.items.push(new CartItem(new Product(product.pid, product.name, product.desc, product.price, product.img, product.rating, product.votes, product.category), Number(quantity)));
+        this.total_quantity = Number(this.total_quantity??0) + Number(quantity);
+        this.total_price = Number(this.total_price??0) + Number(product.price.substring(1)) * Number(quantity);
     }
     removeProduct(product_id: string, quantity: number) {
         const item: CartItem | undefined = this.items.find((item) => item.product.pid === product_id);
@@ -53,6 +53,14 @@ export class Cart {
         const items: CartItem[] = CartItem.fromDynamoItems(item.items.L);
         return new Cart(user_id, items);
     }
+    toPlainObject() {
+        return {
+            user_id: this.user_id,
+            items: this.items.map((item) => item.toPlainObject()),
+            total_quantity: this.total_quantity,
+            total_price: this.total_price
+        };
+    }
 }
 export class CartItem {
     product: Product;
@@ -61,7 +69,7 @@ export class CartItem {
     constructor(product: Product, quantity: number) {
         this.product = product;
         this.quantity = quantity;
-        this.total_price = Number(product.price) * Number(this.quantity);
+        this.total_price = Number(product.price.substring(1)) * Number(this.quantity);
     }
     static fromDynamoItem(item: Record<string, any>): CartItem {
         const product: Product = Product.fromDynamoItem(item.product.M);
@@ -74,6 +82,13 @@ export class CartItem {
             cartItems.push(CartItem.fromDynamoItem(item.M));
         });
         return cartItems;
+    }
+    toPlainObject() {
+        return {
+            product: this.product.toPlainObject(),
+            quantity: this.quantity,
+            total_price: this.total_price
+        };
     }
 }
 

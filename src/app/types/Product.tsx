@@ -19,7 +19,18 @@ export default class Product {
         this.votes = votes;
         this.category = category;
     }
-    
+    toPlainObject() {
+        return {
+          pid: this.pid,
+          name: this.name,
+          desc: this.desc,
+          price: this.price,
+          img: this.img,
+          rating: this.rating,
+          votes: this.votes,
+          category: this.category
+        };
+      }
     static toJSON(products: Product[]): string {
         return JSON.stringify(products.map((product) => ({
             pid: product.pid,
@@ -46,21 +57,22 @@ export default class Product {
             product.category
         ));
     }
-    static fromDynamoItem(item: Record<string, any>): Product {
-        return {
-          pid: item.pid.S,
-          name: item.name.S,
-          desc: item.desc.S,
-          price: item.price.S,
-          img: item.img.S,
-          rating: Number(item.rating.N),
-          votes: Number(item.votes.N),
-          category: item.category.S
-        };
+    static fromDynamoItem(item: Record<string, any>): Product { 
+        return new Product(
+          item.pid.S,
+          item.name.S,
+          item.desc.S,
+          item.price.S,
+          item.img.S,
+          Number(item.rating.N),
+          Number(item.votes.N),
+          item.category.S
+        );
       }
       static fromDynamoItems(items: Record<string, any>[]): Product[] {
         return items.map((item) => Product.fromDynamoItem(item));
       }
+      
       
 }
 // Add LowerCase()

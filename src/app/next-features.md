@@ -22,6 +22,8 @@
     5. Creating a product
     6. Creating a user
     7. Obtaining a user by user ID
+    8. Obtain Shopping Cart by user ID
+    9. Add to Shopping Cart
 4. Classes
     1. Product - Represents a product.
     2. User - Represents a user.
@@ -29,10 +31,12 @@
 6. Database: DynamoDB
 7. User Authentication: AWS Cognito
 8. Profile page with address using user id
+9. Shopping Cart
+
 
 ## Next:
 1. Pagination and more products (n=20 products a page, general query returns items-a-page and num-pages)
-2. Shopping cart and adding to cart (user_id)
+2. Delete from shopping cart
 3. Checkout (using Stripe)
 4. More filters
 5. Sorting

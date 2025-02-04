@@ -3,8 +3,9 @@ import { SearchBar } from "./searchbar";
 import Profile from "./profile";
 import { Logo } from "./logo";
 import { IoMdAdd } from "react-icons/io";
-import { IoCart } from "react-icons/io5";
+// import { IoCart } from "react-icons/io5";
 import LoginButton from "./LoginButton";
+import Cart from "./cart";
 
 interface navbarProps {
     setTag: Dispatch<SetStateAction<string>>;
@@ -30,9 +31,10 @@ export const Navbar: React.FC<navbarProps> = ({setTag, setSearchTerm, setFilter,
                         }}>
                         <IoMdAdd className="text-2xl w-8 h-8" />
                     </button>
-                    <a href="./cart" className="p-1 rounded-md hover:bg-white hover:text-black cursor-pointer self-center">
+                    {/* <a href="./cart/?" className="p-1 rounded-md hover:bg-white hover:text-black cursor-pointer self-center">
                         <IoCart className="text-2xl w-8 h-8" />
-                    </a>
+                    </a> */}
+                    <Cart username={username} isAuthenticated={isAuthenticated} user_id={user_id}/>
                     <LoginButton setUsername={setUsername} setIsAuthenticated={setIsAuthenticated} setUser_id={setUser_id}/>
                     <Profile username={username} isAuthenticated={isAuthenticated} user_id={user_id}/>
                 </div>
