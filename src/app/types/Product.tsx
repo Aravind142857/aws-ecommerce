@@ -3,13 +3,13 @@ export default class Product {
     pid: string;
     name: string;
     desc: string;
-    price: string;
+    price: number;
     img: string;
     rating: number;
     votes: number;
     category: string;
 
-    constructor(pid: string, name: string, desc:string, price: string, img: string, rating: number, votes: number, category: string) {
+    constructor(pid: string, name: string, desc:string, price: number, img: string, rating: number, votes: number, category: string) {
         this.pid = pid;//uuidv4();
         this.name = name;
         this.desc = desc;
@@ -62,7 +62,7 @@ export default class Product {
           item.pid.S,
           item.name.S,
           item.desc.S,
-          item.price.S,
+          Number(item.price.N),
           item.img.S,
           Number(item.rating.N),
           Number(item.votes.N),

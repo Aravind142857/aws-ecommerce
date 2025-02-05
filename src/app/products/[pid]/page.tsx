@@ -1,15 +1,16 @@
 "use client"
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Product from "@/app/types/Product";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
-import router from "next/router";
+
 const ProductPage = () => {
     const params = useParams();
     const [product, setProduct] = useState<Product|null>(null);
     const pid = params.pid;
     const { data: session, status } = useSession();
+    const router = useRouter();
     useEffect(() => {
         const fetchProduct:{():Promise<void>} = async () => {
             const response = await fetch(`http://localhost:3000/api/productByID?pid=${pid}`);
@@ -29,10 +30,8 @@ const ProductPage = () => {
     const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const target = e.target as HTMLFormElement;
-        console.log(target);
         const quantity = target.elements.namedItem('quantity') as HTMLInputElement;
         const quantityValue = quantity.value;
-        console.log(quantityValue);
         if (!session) {
             router.push("/");
             return;
@@ -70,7 +69,7 @@ const ProductPage = () => {
             <div className="w-[50%] p-4 text-center">
                 <h1 className="text-4xl">{product.name}</h1>
                 <h2 className="text-3xl">{product.desc}</h2>
-                <h3 className="text-xl py-10">{product.price}</h3>
+                <h3 className="text-xl py-10">${product.price}</h3>
                 
             </div>
             <div className="w-[20%] py-16 px-8 bg-slate-700 text-lg text-center flex flex-col justify-end">

@@ -26,13 +26,14 @@ export async function POST (request: Request) {
         let c: Cart = new Cart(user_id, []);
         if (res.Items && res.Items.length > 0) {
             c = Cart.fromDynamoItem(res.Items[0]);
-        }
-        c.addProduct(product, Number(quantity));
-        const cartPlainObject = c.toPlainObject();
-        db.put({TableName: "Carts", Item: cartPlainObject});
-        return Response.json({ data: c });
+            c.removeProduct(product.pid, quantity);
+            db.put({TableName: "Carts", Item: c.toPlainObject()});
+            return Response.json({ data: c });
+        } else {
+            return Response.json({error: "No such product in cart"}, { status: 404 });
+        };
     } catch (err) {
-    console.log(err);
-    return Response.json({ error: 'No such product found' }, {status: 404})
+        console.log(err);
+        return Response.json({ error: 'No such product found' }, {status: 404})
     }
 }

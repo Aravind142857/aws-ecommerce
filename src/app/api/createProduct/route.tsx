@@ -25,7 +25,7 @@ export async function POST (request: Request) {
         uuidv4(),
         formData.get('name') as string,
         formData.get('desc') as string,
-        formData.get('price') as string,
+        Number(formData.get('price')),
         formData.get('img') as string,
         Number(formData.get('rating')),
         Number(formData.get('votes')),

@@ -24,14 +24,14 @@ export class Cart {
         const item: CartItem | undefined = this.items.find((item) => item.product.pid === product.pid);
         if (item) {
             item.quantity += Number(quantity);
-            item.total_price = Number(item.quantity) * Number(item.product.price.substring(1));
+            item.total_price = Number(item.quantity) * Number(item.product.price);
             this.total_quantity = Number(this.total_quantity) + Number(quantity);
-            this.total_price = Number(this.total_price) + Number(item.product.price.substring(1)) * Number(quantity);
+            this.total_price = Number(this.total_price) + Number(item.product.price) * Number(quantity);
             return;
         }
         this.items.push(new CartItem(new Product(product.pid, product.name, product.desc, product.price, product.img, product.rating, product.votes, product.category), Number(quantity)));
         this.total_quantity = Number(this.total_quantity??0) + Number(quantity);
-        this.total_price = Number(this.total_price??0) + Number(product.price.substring(1)) * Number(quantity);
+        this.total_price = Number(this.total_price??0) + Number(product.price) * Number(quantity);
     }
     removeProduct(product_id: string, quantity: number) {
         const item: CartItem | undefined = this.items.find((item) => item.product.pid === product_id);
@@ -69,7 +69,7 @@ export class CartItem {
     constructor(product: Product, quantity: number) {
         this.product = product;
         this.quantity = quantity;
-        this.total_price = Number(product.price.substring(1)) * Number(this.quantity);
+        this.total_price = Number(product.price) * Number(this.quantity);
     }
     static fromDynamoItem(item: Record<string, any>): CartItem {
         const product: Product = Product.fromDynamoItem(item.product.M);

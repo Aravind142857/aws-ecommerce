@@ -24,6 +24,7 @@
     7. Obtaining a user by user ID
     8. Obtain Shopping Cart by user ID
     9. Add to Shopping Cart
+    10. Delete from Shopping Cart
 4. Classes
     1. Product - Represents a product.
     2. User - Represents a user.
@@ -36,16 +37,16 @@
 
 ## Next:
 1. Pagination and more products (n=20 products a page, general query returns items-a-page and num-pages)
-2. Delete from shopping cart
-3. Checkout (using Stripe)
-4. More filters
-5. Sorting
-6. Personal Recommendations
-7. Allow mini-view of entire product page on listing page
-8. Themes
-9. BUG FIX: Tag and search
-10. BUG FIX: Add lowercase name, desc to Product to enable case-insensitive search. Change searchTerm to lowercase
-11. API for login, signup
+2. Checkout (using Stripe)
+3. More filters
+4. Sorting
+5. Personal Recommendations
+6. Allow mini-view of entire product page on listing page
+7. Themes
+8. BUG FIX: Tag and search
+9. BUG FIX: Add lowercase name, desc to Product to enable case-insensitive search. Change searchTerm to lowercase
+10. API for login, signup
+11. BUG FIX: Float error, loc: Cart, desc: (20 + 20 + 19.99 ?= 59.989999999999995)
 
 ## Tech stack:
 1. NextJS

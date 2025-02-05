@@ -106,7 +106,7 @@ export const ProductListing: React.FC<ProductListingProps> = ({tag, searchTerm, 
             <Image src={product.img.toString()} alt="Placeholder" width={400} height={300} className="m-auto "/>
             <h1 className="text-4xl text-center">{product.name}</h1>
             <h2 className="text-md text-center w-full line-clamp-1">{product.desc}</h2>
-            <span className="flex justify-between"><p className="font-bold">{product.price}</p><p>{product.rating.toString()} / 5</p><p>{product.votes.toString()}</p></span>
+            <span className="flex justify-between"><p className="font-bold">${product.price}</p><p>{product.rating.toString()} / 5</p><p>{product.votes.toString()}</p></span>
             <p className="text-center text-lg">{product.category}</p>
           </div>
         ))}

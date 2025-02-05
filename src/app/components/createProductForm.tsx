@@ -49,8 +49,8 @@ export const CreateProductForm:React.FC<CreateProductFormProps> = ({setCreateMod
                 <input type="text" name="name" id="name" defaultValue="Protein bar" className="border-2 border-black text-black px-2"/>
                 <label htmlFor="desc">Description</label>
                 <input type="text" name="desc" id="desc" defaultValue="Think! high protein (Brownie Crunch)" className="border-2 border-black text-black px-2"/>
-                <label htmlFor="price">Price</label>
-                <input type="text" name="price" id="price" defaultValue="$2.99" className="border-2 border-black text-black px-2"/>
+                <label htmlFor="price">Price ($)</label>
+                <input type="number" step="0.01" name="price" id="price" defaultValue="2.99" className="border-2 border-black text-black px-2"/>
                 <label htmlFor="img">Image</label>
                 <input type="text" name="img" id="img" defaultValue="https://picsum.photos/seed/thinkbrowniecrunch/400/300" className="border-2 border-black text-black px-2"/>
                 <label htmlFor="rating">Rating</label>

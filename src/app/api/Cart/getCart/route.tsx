@@ -17,12 +17,10 @@ export async function GET (request: NextRequest) {
       };
       try {
         const res = await db.send(new QueryCommand(params));
-        console.log(res);
         if (!res.Items || res.Items.length == 0) {
           return Response.json({ message: 'No items in cart' }, {status: 200})
         }
         const cart: Cart = Cart.fromDynamoItem(res.Items[0]);
-        console.log(cart);
         return Response.json({ data: cart });
       } catch (err) {
         console.log(err);
