@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { Cart, CartItem } from "@/app/types/cart";
 import { MdAdd, MdRemove, MdDelete } from "react-icons/md";
+import CheckoutButton from "@/app/components/CheckoutButton";
 
 const QtyBar:React.FC<{item: CartItem, setStaleData: Dispatch<boolean>}> = ({item, setStaleData}) => {
     const [quantity, setQuantity] = useState<number>(item.quantity);
@@ -71,7 +72,7 @@ const QtyBar:React.FC<{item: CartItem, setStaleData: Dispatch<boolean>}> = ({ite
             <div className="self-center mx-auto ">
                 <div className="rounded-full w-fit p-2 border-4 border-amber-500 flex flex-row text-2xl">
                     <button className="w-10 h-8  text-white" onClick={()=>{handleDecrement(1)}}>
-                        {quantity > 1?<MdRemove className="m-auto"/>:<MdDelete className="m-auto text-red-500"/>}</button>
+                        {(quantity > 1)?<MdRemove className="m-auto"/>:<MdDelete className="m-auto text-red-500"/>}</button>
                     <div className="w-10 h-8 text-white text-center">{item.quantity}</div>
                     <button className="w-10 h-8  text-white" onClick={handleIncrement}><MdAdd className="m-auto"/></button>
                 </div>
@@ -141,7 +142,7 @@ const CartPage:React.FC = () => {
                 <p className="text-center text-xl">Subtotal ({cartData?.total_quantity??0} items):</p>
 
                 <p className="text-center text-2xl text-white font-bold">${cartData?.total_price??0}</p>
-                {Number(cartData?.items?.length)>0 && <button className="w-full bg-amber-500 hover:bg-amber-500/50 text-white font-bold py-2 px-4 rounded">Checkout</button>}
+                {Number(cartData?.items?.length)>0 && <CheckoutButton items={cartData?.items}/>}
             </div>
             </div>
         </main>

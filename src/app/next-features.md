@@ -33,20 +33,21 @@
 7. User Authentication: AWS Cognito
 8. Profile page with address using user id
 9. Shopping Cart
-
+10. Checkout using Stripe
 
 ## Next:
 1. Pagination and more products (n=20 products a page, general query returns items-a-page and num-pages)
-2. Checkout (using Stripe)
-3. More filters
-4. Sorting
-5. Personal Recommendations
-6. Allow mini-view of entire product page on listing page
-7. Themes
-8. BUG FIX: Tag and search
-9. BUG FIX: Add lowercase name, desc to Product to enable case-insensitive search. Change searchTerm to lowercase
-10. API for login, signup
-11. BUG FIX: Float error, loc: Cart, desc: (20 + 20 + 19.99 ?= 59.989999999999995)
+2. More filters
+3. Sorting
+4. Personal Recommendations
+5. Allow mini-view of entire product page on listing page
+6. Themes
+7. BUG FIX: Tag and search
+8. BUG FIX: Add lowercase name, desc to Product to enable case-insensitive search. Change searchTerm to lowercase
+9. API for login, signup
+10. BUG FIX: Float error, loc: Cart, desc: (20 + 20 + 19.99 ?= 59.989999999999995)
+11. Cleanup API directory.
+12. Design Payment cancel page
 
 ## Tech stack:
 1. NextJS
@@ -54,3 +55,4 @@
 3. AWS DynamoDB
 4. AWS Cognito
 5. Tailwind CSS
+6. Stripe

@@ -61,6 +61,18 @@ export class Cart {
             total_price: this.total_price
         };
     }
+    
+    clear() {
+        if (this.items) {
+            this.items = [];
+        }
+        if (this.total_quantity) {
+            this.total_quantity = 0;
+        }
+        if (this.total_price) {
+            this.total_price = 0;
+        }
+    }
 }
 export class CartItem {
     product: Product;
