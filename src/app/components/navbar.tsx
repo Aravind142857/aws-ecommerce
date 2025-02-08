@@ -24,12 +24,16 @@ export const Navbar: React.FC<navbarProps> = ({setTag, setSearchTerm, setFilter,
                 <Logo />
                 <SearchBar setSearchTerm={setSearchTerm} setFilter={setFilter} reset={reset} setReset={setReset}/>
                 <div className="flex justify-end">
+                    <div>
                     <button className="p-1 rounded-md hover:bg-white hover:text-black cursor-pointer" onClick={()=>{
                         console.log("Create MODE");
                         setCreateMode(true);
                         }}>
                         <IoMdAdd className="text-2xl w-8 h-8" />
+                        
                     </button>
+                    {/* <span className="">Add product to database</span> */}
+                    </div>
                     <Cart username={username} isAuthenticated={isAuthenticated} user_id={user_id}/>
                     <LoginButton setUsername={setUsername} setIsAuthenticated={setIsAuthenticated} setUser_id={setUser_id}/>
                     <Profile username={username} isAuthenticated={isAuthenticated} user_id={user_id}/>

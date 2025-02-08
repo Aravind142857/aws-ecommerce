@@ -10,7 +10,7 @@ export default function Home() {
   const [createMode, setCreateMode] = useState<boolean>(false);
   return (
     <>
-    <main className="px-[10%] py-4 ">
+    <main className="px-[10%] py-4 space-y-8">
       <Navbar setTag={setSelectedTag} setSearchTerm={setSearchTerm} setFilter={setFilterType} setCreateMode={setCreateMode}/>
       <ProductListing tag={selectedTag} searchTerm={searchTerm} filter={filterType}/>
     </main>

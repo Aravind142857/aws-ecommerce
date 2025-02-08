@@ -21,7 +21,7 @@ export const ProductListing: React.FC<ProductListingProps> = ({tag, searchTerm, 
     const [items, setItems] = useState<Product[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
-
+    const [sort, setSort] = useState<string | null>('');
     const router = useRouter();
     const fetchProducts = async () => {
         try {
@@ -95,10 +95,48 @@ export const ProductListing: React.FC<ProductListingProps> = ({tag, searchTerm, 
                 fetchProductsByQuery();
             }
         }
-    },[searchTerm])
-
+    },[searchTerm]);
+    const handleSort = (sortType: string) => {
+        let sortedItems = [...items];
+        switch (sortType) {
+            case "priceAsc":
+                sortedItems.sort((a, b) => a.price - b.price);
+                break;
+            case "priceDesc":
+                sortedItems.sort((a, b) => b.price - a.price);
+                break;
+            case "ratingDesc":
+                sortedItems.sort((a, b) => b.rating - a.rating);
+                break;
+            case "ratingAsc":
+                sortedItems.sort((a, b) => a.rating - b.rating);
+                break;
+            default:
+                break;
+        }
+        setItems(sortedItems);
+    };
+    useEffect(() => {
+        handleSort(sort!);
+    }, [sort]
+    );
     return (
     <>
+    <div className="flex justify-between">
+        <h1 className="text-lg font-bold">{items.length} of {items.length} items</h1>
+          <p className="text-xl">Showing {filter} products</p>
+        {/* sortby */}
+        <select
+          className=" bg-transparent outline outline-2 outline-white px-2"
+          onChange={(e) => setSort(e.target.value)}
+        >
+          <option value="">Sort by</option>
+          <option value="priceAsc">Price (Low to High)</option>
+          <option value="priceDesc">Price (High to Low)</option>
+          <option value="ratingDesc">Rating (Highest)</option>
+          <option value="ratingAsc">Rating (Lowest)</option>
+        </select>
+        </div>
     {items.length == 0 && <p className="text-center mt-4 text-6xl w-full mx-auto px-auto">No Items match the filter</p>}
     <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-flow-row mx-auto ">
         {items.map((product, idx) => (
