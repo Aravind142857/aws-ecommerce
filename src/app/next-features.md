@@ -35,6 +35,7 @@
 9. Shopping Cart
 10. Checkout using Stripe
 11. Single-page sort
+12. Recent Orders
 
 ## Next:
 1. Pagination and more products (n=20 products a page, general query returns items-a-page and num-pages)
@@ -49,6 +50,10 @@
 10. Cleanup API directory.
 11. Design Payment cancel page
 12. ToolTip
+13. Rate and Review
+14. Clean up and redesign recent orders
+15. Remove redundant orders from recentOrders
+
 ## Tech stack:
 1. NextJS
 2. TypeScript

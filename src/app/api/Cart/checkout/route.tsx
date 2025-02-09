@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
                             description: item.product.desc,
                             images: [item.product.img]
                         },
-                        unit_amount: item.product.price * 100,
+                        unit_amount: Math.round(item.product.price * 100),
                     },
                     quantity: item.quantity
             }));

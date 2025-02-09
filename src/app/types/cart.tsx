@@ -56,7 +56,7 @@ export class Cart {
     toPlainObject() {
         return {
             user_id: this.user_id,
-            items: this.items.map((item) => item.toPlainObject()),
+            items: this.items.map((item) => new CartItem(item.product, item.quantity).toPlainObject()),
             total_quantity: this.total_quantity,
             total_price: this.total_price
         };
@@ -97,7 +97,7 @@ export class CartItem {
     }
     toPlainObject() {
         return {
-            product: this.product.toPlainObject(),
+            product: new Product(this.product.pid, this.product.name, this.product.desc, this.product.price, this.product.img, this.product.rating, this.product.votes, this.product.category).toPlainObject(),
             quantity: this.quantity,
             total_price: this.total_price
         };
