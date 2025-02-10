@@ -52,7 +52,6 @@
 12. ToolTip
 13. Rate and Review
 14. Clean up and redesign recent orders
-15. Remove redundant orders from recentOrders
 
 ## Tech stack:
 1. NextJS
