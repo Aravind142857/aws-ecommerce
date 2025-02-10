@@ -51,7 +51,7 @@
 11. Design Payment cancel page
 12. ToolTip
 13. Rate and Review
-14. Clean up and redesign recent orders
+14. Add Order placed to Order
 
 ## Tech stack:
 1. NextJS

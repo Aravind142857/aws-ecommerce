@@ -13,8 +13,14 @@ export class RecentOrders {
         console.log(`new order added. ${order}, ${this.orders}`);
     }
 
-    getRecentOrders() {
-        return this.orders.slice(-5);
+    getRecentOrders(n: number) {
+        if (n > this.orders.length) {
+            return this.orders;
+        }
+        if (n == -1) {
+            return this.orders;
+        }
+        return this.orders.slice(n);
     }
 
     toPlainObject() {

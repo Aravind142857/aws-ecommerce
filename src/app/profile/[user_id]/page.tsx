@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import User from "@/app/types/User";
 import { Order, RecentOrders } from "@/app/types/recentOrders";
 import { Cart } from "@/app/types/cart";
+import Link from "next/link";
 
 const ProfilePage:React.FC = () => {
     const params = useParams();
@@ -38,7 +39,7 @@ const ProfilePage:React.FC = () => {
     useEffect(() => {
         const fetchRecentOrders = async () => {
             try {
-                const response = await fetch(`/api/recentOrders/getRecentOrders?user_id=${userData?.user_id}`);
+                const response = await fetch(`/api/recentOrders/getRecentOrders?user_id=${userData?.user_id}&num_orders=${1}`);
                 if (!response.ok) {
                     console.error('Failed to fetch recent orders');
                 }
@@ -66,7 +67,10 @@ const ProfilePage:React.FC = () => {
                 
             </div>
             <div id="profile-orders" className=" w-1/2 min-h-64 mx-auto my-2 p-2 bg-gradient-to-br from-slate-700 via-gray-500  to-slate-600 ring ring-slate-400 ring-offset-2 ring-offset-black shadow-[0px_0px_40px_10px_rgba(148,163,184,1)]">
-                <p className="profile-label">Recent orders</p>
+                <div className="flex flex-row justify-between">
+                <p className="profile-label">Last order</p>
+                <Link className="p-2 bg-amber-500 rounded-xl" href={`/orders/${params.user_id}`}>Older orders</Link>
+                </div>
                 <div className="profile-content flex flex-col">
                     {recentOrders.map((order:Order) => (
                         <div key={order.order_id}>

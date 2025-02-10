@@ -6,6 +6,7 @@ import { RecentOrders } from "@/app/types/recentOrders";
 export async function GET (request: NextRequest) {
     const searchedParams = request.nextUrl.searchParams;
     const user_id: string | null = searchedParams.get('user_id');
+    const num_orders: number | null = searchedParams.get('num_orders') ? parseInt(searchedParams.get('num_orders') || '', 10) : null;
     if (user_id) {
       const params = {
         "ExpressionAttributeValues": {
@@ -22,7 +23,7 @@ export async function GET (request: NextRequest) {
           return Response.json({ message: 'No recent orders' }, {status: 200})
         }
         const recent_orders: RecentOrders = RecentOrders.fromDynamoItem(res.Items[0]);
-        return Response.json({ data: recent_orders.getRecentOrders() });
+        return Response.json({ data: recent_orders.getRecentOrders(num_orders??-1) });
       } catch (err) {
         console.log(err);
         return Response.json({ error: 'Cart not found for user' }, {status: 404})
