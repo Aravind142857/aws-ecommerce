@@ -8,6 +8,7 @@ export default class Product {
     rating: number;
     votes: number;
     category: string;
+    lowercase_description: string;
 
     constructor(pid: string, name: string, desc:string, price: number, img: string, rating: number, votes: number, category: string) {
         this.pid = pid;//uuidv4();
@@ -18,6 +19,7 @@ export default class Product {
         this.rating = rating;
         this.votes = votes;
         this.category = category;
+        this.lowercase_description = desc.toLowerCase().replaceAll(/[^a-z0-9\s]/g, '');
     }
     toPlainObject() {
         return {
@@ -28,7 +30,8 @@ export default class Product {
           img: this.img,
           rating: this.rating,
           votes: this.votes,
-          category: this.category
+          category: this.category,
+          lowercase_description: this.lowercase_description
         };
       }
     static toJSON(products: Product[]): string {
@@ -40,7 +43,8 @@ export default class Product {
             img: product.img,
             rating: product.rating,
             votes: product.votes,
-            category: product.category
+            category: product.category,
+            lowercase_description: product.lowercase_description
         })));
     }
 
@@ -54,7 +58,7 @@ export default class Product {
             product.img,
             product.rating,
             product.votes,
-            product.category
+            product.category,
         ));
     }
     static fromDynamoItem(item: Record<string, any>): Product { 

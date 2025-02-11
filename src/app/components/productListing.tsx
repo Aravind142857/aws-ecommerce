@@ -60,7 +60,7 @@ export const ProductListing: React.FC<ProductListingProps> = ({tag, searchTerm, 
     const fetchProductsByQuery = async () => {
         try {
             setLoading(true);
-            const response = await fetch(`/api/searchProducts?query=${searchTerm}`);
+            const response = await fetch(`/api/searchProducts?query=${searchTerm.toLowerCase()}`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }

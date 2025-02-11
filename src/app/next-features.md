@@ -12,7 +12,7 @@
     1. Logo
     2. Profile
     3. Some Filters
-    4. Functional search bar
+    4. Functional search bar (single word case-insensitive)
     5. Creating a product
 3. APIs
     1. All products
@@ -44,14 +44,14 @@
 4. Allow mini-view of entire product page on listing page
 5. Themes
 6. BUG FIX: Tag and search
-7. BUG FIX: Add lowercase name, desc to Product to enable case-insensitive search. Change searchTerm to lowercase
-8. API for login, signup
-9. BUG FIX: Float error, loc: Cart, desc: (20 + 20 + 19.99 ?= 59.989999999999995)
-10. Cleanup API directory.
-11. Design Payment cancel page
-12. ToolTip
-13. Rate and Review
-14. Add Order placed to Order
+7. API for login, signup
+8. BUG FIX: Float error, loc: Cart, desc: (20 + 20 + 19.99 ?= 59.989999999999995)
+9. Cleanup API directory.
+10. Design Payment cancel page
+11. ToolTip
+12. Rate and Review
+13. Add Order placed to Order
+14: BUG FIX: Multi-word search
 
 ## Tech stack:
 1. NextJS

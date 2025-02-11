@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { allItems } from "../products";
+// import { allItems } from "../products";
 import Product from "@/app/types/Product";
 import { db } from "@/app/database/dynamoDB";
 import { ScanCommand } from "@aws-sdk/client-dynamodb";
@@ -11,14 +11,15 @@ export async function GET (request: NextRequest) {
         const params = {
             "ExpressionAttributeNames": {
                 "#name": "name",
-                "#desc": "desc"
+                "#desc": "desc",
+                "#lowercase_description": "lowercase_description"
             },
             "ExpressionAttributeValues": {
             ":searchTerm": {
             "S": `${searchTerm}`
             }
             },
-            "FilterExpression": "contains(#name, :searchTerm) OR contains(#desc, :searchTerm)",
+            "FilterExpression": "contains(#name, :searchTerm) OR contains(#lowercase_description, :searchTerm) OR contains(#desc, :searchTerm)",
             "TableName": "Products"
           };
     
@@ -42,6 +43,6 @@ export async function GET (request: NextRequest) {
         // console.log("Filtered Items:", filteredItems);
         // return Response.json({ data: Product.toJSON(filteredItems) });
     } else {
-        return Response.json({ data: Product.toJSON(allItems) });
+        return;
     }
 }
