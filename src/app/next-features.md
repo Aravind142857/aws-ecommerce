@@ -3,7 +3,7 @@
 1. A section that displays all the filtered products in a box
     1. Image
     2. Name
-    3. Rating
+    3. Rating (total rating for product)
     4. Votes
     5. Price
     6. Category
@@ -49,7 +49,7 @@
 9. Cleanup API directory.
 10. Design Payment cancel page
 11. ToolTip
-12. Rate and Review
+12. Rate and Review - NEXT
 13. Add Order placed to Order
 14: BUG FIX: Multi-word search
 
