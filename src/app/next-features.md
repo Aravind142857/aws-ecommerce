@@ -36,6 +36,7 @@
 10. Checkout using Stripe
 11. Single-page sort
 12. Recent Orders
+13. Rate a product that was previously ordered
 
 ## Next:
 1. Pagination and more products (n=20 products a page, general query returns items-a-page and num-pages)
@@ -49,7 +50,7 @@
 9. Cleanup API directory.
 10. Design Payment cancel page
 11. ToolTip
-12. Rate and Review - NEXT
+12. Review
 13. Add Order placed to Order
 14: BUG FIX: Multi-word search
 

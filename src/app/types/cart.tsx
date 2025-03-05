@@ -81,7 +81,7 @@ export class CartItem {
     constructor(product: Product, quantity: number) {
         this.product = product;
         this.quantity = quantity;
-        this.total_price = Number(product.price) * Number(this.quantity);
+        this.total_price = (Number(product.price) * Number(this.quantity));
     }
     static fromDynamoItem(item: Record<string, any>): CartItem {
         const product: Product = Product.fromDynamoItem(item.product.M);

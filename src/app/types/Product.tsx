@@ -10,8 +10,8 @@ export default class Product {
     category: string;
     lowercase_description: string;
 
-    constructor(pid: string, name: string, desc:string, price: number, img: string, rating: number, votes: number, category: string) {
-        this.pid = pid;//uuidv4();
+    constructor(pid: string, name: string, desc: string, price: number, img: string, rating: number, votes: number, category: string, lowercase_description?: string) {
+        this.pid = pid; // uuidv4();
         this.name = name;
         this.desc = desc;
         this.price = price;
@@ -19,7 +19,7 @@ export default class Product {
         this.rating = rating;
         this.votes = votes;
         this.category = category;
-        this.lowercase_description = desc.toLowerCase().replaceAll(/[^a-z0-9\s]/g, '');
+        this.lowercase_description = lowercase_description || (this.desc ? this.desc.toLowerCase().replaceAll(/[^a-z0-9\s]/g, '') : ''); // Default value if not provided
     }
     toPlainObject() {
         return {
@@ -62,6 +62,7 @@ export default class Product {
         ));
     }
     static fromDynamoItem(item: Record<string, any>): Product { 
+      console.log(item);
         return new Product(
           item.pid.S,
           item.name.S,
